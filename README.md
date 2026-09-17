@@ -1,5 +1,7 @@
 # feature-doc
 
+[![skills.sh](https://skills.sh/b/Saccharine1211/feature-doc)](https://skills.sh/Saccharine1211/feature-doc)
+
 > Required dependency: `diagram-design`
 
 구현이 끝난 backend feature/API를 현재 repository 코드 기준으로 다시 확인하고, 한국어 문서와 self-contained HTML diagram을 생성하는 Codex 전역 Skill입니다.
@@ -19,6 +21,37 @@
 코드에서 확인되지 않은 내용은 추측하지 않습니다. 확인되지 않은 값은 `코드에서 확인되지 않음`으로 표시합니다.
 
 ## 전역 설치
+
+### `skills` CLI로 설치
+
+`skills` CLI를 사용하면 별도 수동 복사 없이 GitHub에서 Codex 전역 Skill로 설치할 수 있습니다. `npx`를 사용하므로 CLI를 미리 전역 설치할 필요가 없습니다.
+
+먼저 필수 종속 Skill을 설치합니다.
+
+```bash
+npx skills add cathrynlavery/diagram-design --skill diagram-design -g -a codex -y
+```
+
+그 다음 `feature-doc`을 설치합니다.
+
+```bash
+npx skills add Saccharine1211/feature-doc -g -a codex -y
+```
+
+프로젝트에만 설치하려면 `-g`를 빼면 됩니다.
+
+```bash
+npx skills add Saccharine1211/feature-doc -a codex -y
+```
+
+설치된 Skill 확인 및 업데이트:
+
+```bash
+npx skills list
+npx skills update Saccharine1211/feature-doc
+```
+
+`diagram-design`이 없는 환경에서는 `feature-doc`을 먼저 설치하지 말고, 위 종속 Skill 설치가 성공한 뒤 설치하세요.
 
 ### 직접 복사
 
