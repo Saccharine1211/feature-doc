@@ -1,5 +1,7 @@
 # feature-doc
 
+> Required dependency: `diagram-design`
+
 구현이 끝난 backend feature/API를 현재 repository 코드 기준으로 다시 확인하고, 한국어 문서와 self-contained HTML diagram을 생성하는 Codex 전역 Skill입니다.
 
 최근 작업 세션의 context는 범위를 찾는 힌트로만 사용합니다. 최종 문서는 반드시 현재 코드, `git diff`, OpenAPI, DTO/schema, validation, middleware/auth, Service/Repository, DB schema/migration, queue/worker, external SDK/API, env 사용처, tests를 실제 확인한 뒤 작성합니다.
@@ -81,16 +83,17 @@ API마다 폴더를 과도하게 나누지 않고, 하나의 feature 폴더 안�
 
 ## Diagram 동작
 
-`diagram-design` Skill이 설치되어 있으면 architecture, sequence, data-flow diagram을 self-contained HTML로 생성합니다. diagram은 실제 코드와 설정으로 확인되는 node, arrow, branch만 사용하며 complexity가 높으면 overview/detail로 나눕니다.
+`diagram-design` Skill은 `feature-doc`의 필수 종속 Skill입니다. architecture, sequence, data-flow diagram은 이 Skill의 style guide, accessibility contract, layout, connector, complexity 규칙에 따라 self-contained HTML로 생성합니다.
 
-`diagram-design` Skill이 설치되어 있지 않으면 이를 명확히 알리고 `README.md`를 포함한 text documentation은 계속 생성합니다. 이 경우 존재하지 않는 diagram HTML을 만들거나 생성됐다고 보고하지 않습니다.
+`diagram-design`이 설치되어 있지 않거나 로드되지 않으면 `feature-doc` 작업을 시작하지 않습니다. README-only partial output이나 placeholder HTML을 만들지 않고, 먼저 `diagram-design` 설치가 필요하다고 알립니다.
 
 ## 레포에 적용할 때 확인할 것
 
 1. Codex 전역 경로에 `feature-doc` 폴더를 복사합니다.
-2. backend 기능 구현을 완료한 세션에서 `/feature-doc`을 호출합니다.
-3. 생성된 `docs/features/<feature-name>/README.md`와 diagram 링크를 검토합니다.
-4. `확인되지 않은 내용`과 API contract의 조건부 field를 실제 코드와 대조합니다.
+2. `diagram-design` Skill이 설치되어 있는지 확인합니다.
+3. backend 기능 구현을 완료한 세션에서 `/feature-doc`을 호출합니다.
+4. 생성된 `docs/features/<feature-name>/README.md`와 diagram 링크를 검토합니다.
+5. `확인되지 않은 내용`과 API contract의 조건부 field를 실제 코드와 대조합니다.
 
 ## 파일 구조
 
@@ -109,4 +112,3 @@ Skill 구조 검증은 Codex의 `skill-creator` validator로 실행할 수 있�
 ```bash
 python3 /Users/jimin/.codex/skills/.system/skill-creator/scripts/quick_validate.py ./feature-doc
 ```
-

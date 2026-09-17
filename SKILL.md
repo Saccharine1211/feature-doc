@@ -3,6 +3,8 @@ name: feature-doc
 description: Create evidence-based Korean documentation and self-contained diagrams for a backend feature or API that was just implemented in the current repository. Use after implementation work, especially when the user invokes /feature-doc or $feature-doc; do not use for generic README editing or a code-only change.
 metadata:
   short-description: Document completed backend features and APIs
+  required-skills:
+    - diagram-design
 ---
 
 # feature-doc
@@ -83,15 +85,17 @@ For every API, make the contract easy to scan. A recommended table is:
 
 Use code-derived names exactly for class, method, field, enum, table, service, queue, worker, and external service names. Do not translate names that appear in code.
 
-## Diagram workflow
+## Required dependency: diagram-design
 
-Use the `diagram-design` Skill for every diagram that this skill generates. It creates self-contained HTML with inline SVG/CSS. If `diagram-design` is not installed or cannot be loaded:
+`diagram-design` is a required Skill dependency for `feature-doc`, not an optional enhancement. Resolve and load the `diagram-design` Skill before starting documentation work. It must be available so the generated architecture, sequence, and data-flow diagrams follow its style, accessibility, layout, and complexity rules.
 
-- clearly state that diagrams could not be generated because the Skill is unavailable;
-- continue creating `README.md` and all text-based documentation;
-- do not create fake placeholder HTML files or claim that diagrams exist.
+If `diagram-design` is not installed or cannot be loaded:
 
-When `diagram-design` is available:
+- stop the documentation task before creating or changing feature documentation;
+- clearly tell the user that `diagram-design` is required and must be installed first;
+- do not create README-only partial output, placeholder HTML, or a completion report.
+
+When the required dependency is available:
 
 1. Choose the visual type from the verified behavior: `architecture` for components and infrastructure, `sequence` for time-ordered API messages, and `data flow` only for meaningful cross-service/store movement.
 2. Before drawing, state the chosen type, size preset, and any split required by the complexity budget. For this skill, default to a documentation-friendly HTML size and an engineer audience.
