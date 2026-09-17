@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature Documentation"
+  short_description: "Document completed backend features and APIs"
+  default_prompt: "Use $feature-doc to document the backend feature just completed in this repository."
